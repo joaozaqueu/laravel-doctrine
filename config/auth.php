@@ -68,16 +68,20 @@ return [
         'users' => [
             'driver' => 'doctrine',
             'model' => App\Entities\User::class,
-            'password' => [
-                'email' => 'emails.password',
-                'table' => 'password_resets',
-                'expire' => 60,
-            ],
         ],
 
         // 'users' => [
         //     'driver' => 'database',
         //     'table' => 'users',
         // ],
+    ],
+
+    'passwords' => [
+        'users' => [
+            'provider' => 'users',
+            'email' => 'emails.password',
+            'table' => 'password_resets',
+            'expire' => 60,
+        ]
     ],
 ];
