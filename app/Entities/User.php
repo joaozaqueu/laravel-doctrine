@@ -151,9 +151,15 @@ class User implements AuthenticatableContract, CanResetPasswordContract
         return $this->id;
     }
 
+    /**
+     * @return string
+     */
+    public function getUsername()
+    {
+        return $this->email;
+    }
+
     public function sendPasswordResetNotification($token) {
         // do your callback here
     }
-
-
 }
