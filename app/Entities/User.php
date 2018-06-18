@@ -2,7 +2,6 @@
 
 namespace App\Entities;
 
-namespace App\Entities;
 use DateTime;
 use Doctrine\Common\Collections\ArrayCollection;
 use Doctrine\ORM\Mapping as ORM;
@@ -39,31 +38,41 @@ class User implements AuthenticatableContract, CanResetPasswordContract, HasPerm
      * @ORM\Column(type="integer")
      */
     protected $id;
+
     /**
      * @ACL\HasPermissions
      */
     protected $permissions;
+
     /**
      * @ACL\HasRoles()
      * @var \Doctrine\Common\Collections\ArrayCollection|\LaravelDoctrine\ACL\Contracts\Role[]
      */
     protected $roles;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $name;
+
     /**
      * @var string
      * @ORM\Column(type="string")
      */
     protected $email;
+
     /**
      * @ACL\BelongsToOrganisations
      * @var Organisation[]
      */
     protected $organisations;
 
+    /**
+     * @ORM\OneToMany(targetEntity="Note", mappedBy="user", cascade={"persist"})
+     * @var ArrayCollection|Note[]
+     */
+    protected $notes;
 
     /**
      * @return mixed
@@ -200,6 +209,13 @@ class User implements AuthenticatableContract, CanResetPasswordContract, HasPerm
         return $this->organisations;
     }
 
+    /**
+     * @return Note[]|ArrayCollection
+     */
+    public function getNotes()
+    {
+        return $this->notes;
+    }
 
     /**
      * @return string

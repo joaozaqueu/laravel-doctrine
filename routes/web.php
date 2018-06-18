@@ -19,3 +19,10 @@ Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
+Route::prefix('api')->group(function () {
+    Route::prefix('note')->group(function () {
+        Route::get('/', 'Api\NoteController@index')->name('note.index');
+        Route::get('/{id}/edit', 'Api\NoteController@edit')->name('note.edit');
+        Route::post('/', 'Api\NoteController@store')->name('note.store');
+    });
+});
