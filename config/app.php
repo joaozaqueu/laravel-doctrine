@@ -184,6 +184,8 @@ return [
 
         LaravelDoctrine\ORM\Auth\Passwords\PasswordResetServiceProvider::class,
 
+        LaravelDoctrine\ACL\AclServiceProvider::class,
+
     ],
 
     /*
